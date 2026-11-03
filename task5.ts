@@ -23,18 +23,34 @@ interface Adopted {
     AdoptedDate: Date;
 }
 
-interface MedicalHold {
-    status: 'medicalHold';
-    reasons: string;
-}
-
 interface Returned {
     status: 'returned'
     previousAdopter: string;
     reasonForReturn: string;
 }
 
-type CaseStatus = Available | Pending | Adopted | MedicalHold | Returned
+
+interface Quarantine {
+    status: 'medicalHold';
+    medStatus: 'quarantine';
+    daysRemaining: number;
+}
+
+interface Injury {
+    status: 'medicalHold';
+    medStatus: 'injury';
+    treatmentPlan: string;
+}
+
+interface BehaviouralHold {
+    status: 'medicalHold';
+    medStatus: 'behaviouralHold';
+    assessedBy: string;
+}
+
+type MedicalHold = Quarantine | Injury | BehaviouralHold
+
+type CaseStatus = Available | Pending | Adopted | Returned | MedicalHold
 
 function describeCase(status: CaseStatus): string {
     switch (status.status) {
@@ -44,10 +60,18 @@ function describeCase(status: CaseStatus): string {
             return 'Animal adoption is pending';
         case 'adopted':
             return 'Animal has been adopted';
-        case 'medicalHold':
-            return 'Animal is on medical hold';
         case 'returned':
-            return 'Animal has been returned'
+            return 'Animal has been returned';
+        case 'medicalHold':
+            switch (status.medStatus) {
+                case 'quarantine':
+                    return 'Animal is in quarantine';
+                case 'injury':
+                    return 'Animal is injured';
+                case 'behaviouralHold':
+                    return 'Animal is on behavioural hold';
+            }
     }
 }
+
 
