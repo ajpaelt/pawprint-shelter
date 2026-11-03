@@ -19,6 +19,24 @@ const animalTwo: ShelterAnimal = {
     weightKg: 10
 }
 
+const exampleOne: ShelterAnimal = {
+    name: 'Felix',
+    species: 'cat',
+    ageYears: 5,
+    gender: 'male',
+    weightKg: 10
+}
+
+const exampleTwoRaw = {
+    name: 'Cindy',
+    species: 'dog',
+    ageYears: 4,
+    gender: 'female',
+    weightKg: 12
+}
+
+const exampleTwoTyped: ShelterAnimal = exampleTwoRaw;
+
 
 // task2.ts:8:18 - error TS2552: Cannot find name 'shelteranimal'. Did you mean 'ShelterAnimal'?
 
@@ -36,3 +54,7 @@ const animalTwo: ShelterAnimal = {
 // Didn't even reach animalName = true
 
 //All 3 errors are distinct
+
+
+// The indirect way pf building the animal as a ShelterANimal-typed const compiles without getting the specific error of having an undeclared field. It did have an issue with 
+// species name: [Type 'string' is not assignable to type '"dog" | "cat" | "rabbit" | "guinea pig"'.]
