@@ -47,6 +47,26 @@ var intakes = [
     { name: "Pepper", species: "guinea-pig", ageYears: 2, surrenderReason: "Child allergic" },
     { name: "Rex", species: "dog", ageYears: 5, foundLocation: "Byres Road", notes: "No microchip" },
     { name: "Luna", species: "cat", ageYears: 4, surrenderReason: "Landlord won't allow pets" },
-    { name: "Clover", species: "rabbit", ageYears: 2, foundLocation: "Queens Park" },
 ];
 var strayIntake = intakes.filter(function (intakes) { return 'foundLocation' in intakes; });
+var surrenderIntake = intakes.filter(function (intakes) { return 'surrenderReason' in intakes; });
+function averageStrayAge(strayIntake) {
+    var totalAge = 0;
+    for (var _i = 0, strayIntake_1 = strayIntake; _i < strayIntake_1.length; _i++) {
+        var stray = strayIntake_1[_i];
+        totalAge = totalAge + stray.ageYears;
+    }
+    var averageAge = (totalAge / strayIntake.length).toFixed(2);
+    return Number(averageAge);
+}
+function averageSurrenderAge(surrenderIntake) {
+    var totalAge = 0;
+    for (var _i = 0, surrenderIntake_1 = surrenderIntake; _i < surrenderIntake_1.length; _i++) {
+        var surrender = surrenderIntake_1[_i];
+        totalAge = totalAge + surrender.ageYears;
+    }
+    var averageAge = (totalAge / surrenderIntake.length).toFixed(2);
+    return Number(averageAge);
+}
+console.log(averageStrayAge(strayIntake));
+console.log(averageSurrenderAge(surrenderIntake));

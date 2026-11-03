@@ -71,7 +71,37 @@ const intakes: IntakeRecord[] = [
   { name: "Pepper", species: "guinea-pig", ageYears: 2, surrenderReason: "Child allergic" },
   { name: "Rex", species: "dog", ageYears: 5, foundLocation: "Byres Road", notes: "No microchip" },
   { name: "Luna", species: "cat", ageYears: 4, surrenderReason: "Landlord won't allow pets" },
-  { name: "Clover", species: "rabbit", ageYears: 2, foundLocation: "Queens Park" },
 ]
 
 let strayIntake: StrayIntake[] =  intakes.filter((intakes) => 'foundLocation' in intakes);
+let surrenderIntake: SurrenderIntake[] =  intakes.filter((intakes) => 'surrenderReason' in intakes);
+
+
+
+function averageStrayAge(strayIntake): number {
+    let totalAge = 0
+
+    for (let stray of strayIntake) {
+        totalAge = totalAge + stray.ageYears
+    }
+
+    const averageAge = (totalAge / strayIntake.length).toFixed(2);
+
+    return Number(averageAge);
+}
+
+function averageSurrenderAge(surrenderIntake): number {
+    let totalAge = 0
+
+    for (let surrender of surrenderIntake) {
+        totalAge = totalAge + surrender.ageYears
+    }
+
+    
+    let averageAge = (totalAge / surrenderIntake.length).toFixed(2);
+    
+    return Number(averageAge);
+}
+
+console.log(averageStrayAge(strayIntake));
+console.log(averageSurrenderAge(surrenderIntake));
