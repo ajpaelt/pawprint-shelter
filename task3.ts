@@ -1,11 +1,24 @@
 type IntakePriority = {
-    priority: 1 | 2 | 3
+    priority: 0 | 1 | 2 | 3
 };
 
 const intakepriority: IntakePriority = {
     priority: 2
 };
 
+function describePriority(priority: IntakePriority): string {
+    switch (priority.priority) {
+        case 1:
+            return 'High priority';
+        case 2:
+            return 'Medium priority';
+        case 3:
+            return 'Low priority';
+    }
+}
+
+// tsc compiles without error but has highlighted that there is 
+// the return statement for 0 is undefined.
 
 interface Microchipped {
     chipNumber: string;
@@ -32,10 +45,10 @@ type FullyProcessedAnimal = ShelterAnimal & Microchipped & Vaccinated;
 
 type Conflicted = Microchipped & LegacyRecord;
 
-const animalThree: Conflicted = {
-    chipNumber: '12345',
-    chipNumber: 12345
-}
+// const animalThree: Conflicted = {
+//     chipNumber: '12345',
+//     chipNumber: 12345
+// }
 
 const animalTwo: FullyProcessedAnimal = {
     name: 'Sally',
